@@ -1,0 +1,114 @@
+swagger: '2.0'
+
+info:
+  version: "1.0.0"
+  title: Track Advisor Challenge
+  description: |
+    <br /><br />Created by Gabriel Garcia do Nascimento (gabrieln@outlook.com)
+
+basePath: /api/tracks
+paths:
+  /city/{city}:
+    get:
+      tags:
+        - AdviseTrack
+      description:
+        This API suggests a list of 20 tracks based on the user's city
+      produces:
+        - application/json
+      parameters:
+        - name: city
+          in: path
+          description: the city name
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/TrackList'
+        400:
+          description: Error - Invalid request - Whenever the city name is invalid
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Error - Not found - City not found response
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Error - Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+  /location:
+    get:
+      tags:
+        - AdviseTrack
+      description:
+        This API suggests a list of 20 tracks based on the user's coordinates (lat/long)
+      produces:
+        - application/json
+      parameters:
+        - name: latitude
+          in: query
+          description: Latitude component of location.
+          required: true
+          type: number
+        - name: longitude
+          in: query
+          description: Longitude component of location.
+          required: true
+          type: number
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/TrackList'
+        400:
+          description: Error - Invalid request - Whenever the coodinates were invalid
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        404:
+          description: Error - Not found - Coordinates not found
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: Error - Internal Server Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+
+definitions:
+  TrackList:
+    type: object
+    description: The application user
+    properties:
+      genre:
+        type: string
+        description: The track list genre
+      tracks:
+        type: array
+        description: The array of suggested tracks
+        items:
+          $ref: '#/definitions/Track'
+
+  Track:
+    type: object
+    description: The application user
+    properties:
+      artist:
+        type: string
+        description: The track's main artists
+      album:
+        type: string
+        description: The track's album
+      trackName:
+        type: string
+        description: The track name
+
+  ErrorResponse:
+    type: object
+    description: an Error response, usuallly called whenever we have a response differente than 2**
+    properties:
+      message:
+        type: string
+        description: The error message
