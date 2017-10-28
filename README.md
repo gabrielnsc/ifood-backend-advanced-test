@@ -31,6 +31,8 @@ The project was divided into three layers, where the requested data flows from t
  * Controller: our API gateway, responsible for getting the incoming requests
  * Service: our business layer, responsible for handling our business rules
  * Network: our communication layer, responsible for calling external APIs to our suggestion engine
+ 
+Hope you guys enjoy it :)
 
 ### Required tools
  * JDK 8.0 (or higher)
@@ -44,10 +46,10 @@ The project was divided into three layers, where the requested data flows from t
  
 ### API Calls examples
 
-http://localhost:8080/api/tracks/city/Campinas
-http://localhost:8080/api/tracks/city/Belo+Horizonte
-http://localhost:8080/api/tracks/city/Cupertino
-http://localhost:8080/api/tracks/location?lat=-22&lon=-47 (Campinas' coordinates)
+ * http://localhost:8080/api/tracks/city/Campinas
+ * http://localhost:8080/api/tracks/city/Belo+Horizonte
+ * http://localhost:8080/api/tracks/city/Cupertino
+ * http://localhost:8080/api/tracks/location?lat=-22&lon=-47 (Campinas' coordinates)
  
 ### API's Documentation
 The API's documentation was made using Swagger. 
