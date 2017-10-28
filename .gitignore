@@ -1,1 +1,7 @@
-/target/**/*.*
+# binary folder
+/target/
+
+# eclipse files
+.classpath
+.project
+.settings/
